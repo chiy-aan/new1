@@ -1,0 +1,415 @@
+/* ============================================================
+   EXTRAS — Small utility styles
+   ============================================================ */
+
+/* Small action buttons inside timeline cards */
+.btn-small {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 5px 12px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font-body);
+  text-decoration: none;
+}
+
+.btn-small:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(212, 175, 117, 0.08);
+}
+
+.btn-photo-upload {
+  cursor: pointer;
+}
+
+/* Smoother section background gradients */
+#home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(42,7,20,0.4) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(194,24,69,0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+#home > .home-content { position: relative; z-index: 2; }
+
+/* Journey section subtle glow */
+#journey::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(212,175,117,0.04), transparent 60%);
+  pointer-events: none;
+}
+
+/* Memories section overlay */
+#memories::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(42,7,20,0.5) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Cinematic letterbox top/bottom bars on opening scene for wide screens */
+@media (min-aspect-ratio: 21/9) {
+  #opening-scene::before,
+  #opening-scene::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0;
+    height: 60px;
+    background: #000;
+    z-index: 100;
+  }
+  #opening-scene::before { top: 0; }
+  #opening-scene::after { bottom: 0; }
+}
+
+/* Smooth scroll for anchor links */
+html { scroll-behavior: smooth; }
+
+/* Better focus styles */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Loading shimmer for images */
+.gallery-img {
+  background: linear-gradient(90deg, var(--glass-bg) 0%, rgba(212,175,117,0.05) 50%, var(--glass-bg) 100%);
+  background-size: 200% 100%;
+}
+
+/* Animated gradient on chapter title */
+.chapter-title {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGlow 4s ease infinite;
+}
+
+@keyframes titleGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Road moving effect reinforcement */
+.road {
+  overflow: hidden;
+}
+
+/* Temple glow animation */
+.temple {
+  filter: drop-shadow(0 0 15px rgba(255,180,60,0.3));
+  animation: templeGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes templeGlow {
+  from { filter: drop-shadow(0 0 10px rgba(255,180,60,0.2)); }
+  to { filter: drop-shadow(0 0 25px rgba(255,180,60,0.5)); }
+}
+
+/* Additional opening scene polish */
+#opening-text {
+  background: linear-gradient(to top, rgba(9,6,8,0.9) 0%, rgba(9,6,8,0.6) 50%, rgba(9,6,8,0.3) 100%);
+}
+
+/* Smooth transition for glass cards */
+.glass-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212,175,117,0.05), transparent);
+  transition: left 0.6s;
+}
+
+.glass-card:hover::before {
+  left: 100%;
+}
+
+/* Polaroid-style gallery option */
+.gallery-item.polaroid {
+  background: #faf8f2;
+  padding: 12px 12px 40px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+  transform: rotate(var(--rot, -1deg));
+  border-radius: 4px;
+  border: none;
+}
+
+.gallery-item.polaroid .gallery-img {
+  border-radius: 2px;
+}
+
+.gallery-item.polaroid .gallery-info {
+  border-top: none;
+  text-align: center;
+  padding: 8px 0 0;
+}
+
+.gallery-item.polaroid .gallery-caption {
+  font-family: var(--font-script);
+  font-size: 0.9rem;
+  color: #3a2010;
+}
+
+/* Full-width featured photo slot */
+.gallery-item.featured {
+  grid-column: span 2;
+}
+
+.gallery-item.featured .gallery-img-wrapper {
+  height: 340px;
+}
+
+@media (max-width: 600px) {
+  .gallery-item.featured {
+    grid-column: span 1;
+  }
+}
+
+/* Surprise section glitter particles */
+#surprise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(212,175,117,0.04), transparent 60%);
+  pointer-events: none;
+}
+
+/* Better mobile typography */
+@media (max-width: 480px) {
+  .home-heading { letter-spacing: 0.03em; }
+  .forever-heading { letter-spacing: 0.08em; }
+  .chapter-title { letter-spacing: 0.04em; }
+}
+
+/* Entrance animation for main site */
+#main-site {
+  animation: siteEntrance 1s ease both;
+}
+
+@keyframes siteEntrance {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Favorite photo collection */
+.favorite-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.favorite-photo-card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 24px;
+  border: 1px solid rgba(169,120,73,0.22);
+  background: rgba(255,253,248,0.82);
+  box-shadow: 0 16px 45px rgba(136,96,82,0.11);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-warm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.favorite-photo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(136,96,82,0.16);
+}
+
+.favorite-photo-placeholder {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.favorite-photo-label {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--accent-deep);
+}
+
+.favorite-photo-preview {
+  display: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.favorite-photo-card.has-photo .favorite-photo-preview {
+  display: block;
+}
+
+.favorite-photo-card.has-photo .favorite-photo-placeholder,
+.favorite-photo-card.has-photo .favorite-photo-label {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .favorite-photos-grid {
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+}
+
+#home {
+  text-align: center;
+}
+
+#home .home-content {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#home .home-heading,
+#home .home-subheading,
+#home .home-message,
+#home .home-label,
+#home .counter-grid {
+  width: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Unrolling parchment for the surprise note */
+.love-scroll {
+  position: relative;
+  width: min(100%, 520px);
+  margin: 3rem auto 2rem;
+  filter: drop-shadow(0 16px 24px rgba(111,73,53,0.16));
+}
+
+.scroll-trigger {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  padding: 0 0 10px;
+  border: 0;
+  background: transparent;
+  color: var(--accent-deep);
+  cursor: pointer;
+  font: inherit;
+}
+
+.scroll-trigger:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 6px;
+  border-radius: 20px;
+}
+
+.scroll-trigger-label {
+  display: block;
+  padding-bottom: 10px;
+  font-family: var(--font-script);
+  font-size: 1.5rem;
+}
+
+.scroll-rod {
+  position: relative;
+  display: block;
+  height: 24px;
+  border: 1px solid #BD8F5C;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #F4D6A9 0%, #C8955E 48%, #E8C18B 100%);
+  box-shadow: inset 0 3px 4px rgba(255,255,255,0.65), 0 4px 8px rgba(95,61,40,0.16);
+}
+
+.scroll-rod::before,
+.scroll-rod::after {
+  position: absolute;
+  top: 50%;
+  width: 34px;
+  height: 34px;
+  border: 2px solid #B78150;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #FFF0D7, #D5A06A 72%);
+  content: '';
+  transform: translateY(-50%);
+}
+
+.scroll-rod::before { left: -9px; }
+.scroll-rod::after { right: -9px; }
+
+#surprise-message-box {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 24px;
+  border-right: 1px solid rgba(169,120,73,0.35);
+  border-left: 1px solid rgba(169,120,73,0.35);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 34px, rgba(169,120,73,0.13) 35px 36px),
+    linear-gradient(90deg, #F7E5C8, #FFF4DE 18%, #FFF4DE 82%, #F7E5C8);
+  opacity: 0;
+  transition: max-height 0.9s ease, opacity 0.45s ease, padding 0.9s ease;
+}
+
+.love-scroll.open #surprise-message-box {
+  max-height: 440px;
+  padding: 24px;
+  opacity: 1;
+}
+
+.love-scroll .surprise-msg {
+  margin: 0 auto 1rem;
+  padding: 1rem 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: #68484A;
+  font-family: var(--font-script);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.scroll-rod-bottom {
+  height: 18px;
+  opacity: 0;
+  transform: scaleY(0.7);
+  transition: opacity 0.5s ease;
+}
+
+.love-scroll.open .scroll-rod-bottom {
+  opacity: 1;
+}

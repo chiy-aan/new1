@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Our First Love Anniversary — A Cinematic Love Story">
+  <title>Our First Anniversary ❤️</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/extras.css">
+</head>
+<body>
+
+<!-- ============================================================
+     PARTICLE CANVAS (behind everything)
+     ============================================================ -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- ============================================================
+     ROSE PETAL CONTAINER
+     ============================================================ -->
+<div id="petal-container"></div>
+
+<!-- ============================================================
+     HEART BURST CONTAINER
+     ============================================================ -->
+<div id="heart-burst"></div>
+
+<!-- ============================================================
+     TOAST NOTIFICATION
+     ============================================================ -->
+<div id="toast"></div>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav id="nav" class="visible">
+  <div class="nav-logo" onclick="document.getElementById('home').scrollIntoView({behavior:'smooth'})">
+    ❤️ Our Story
+  </div>
+  <button id="nav-toggle" aria-label="Menu">☰</button>
+  <ul class="nav-links">
+    <li><a href="#home">🏠 Home</a></li>
+    <li><a href="#photos">📷 Photos</a></li>
+    <li><a href="#reasons">💕 Why I Love You</a></li>
+    <li><a href="#music">🎵 Our Song</a></li>
+    <li><a href="#letter">💌 Letter</a></li>
+    <li><a href="#surprise">🎁 Surprise</a></li>
+  </ul>
+</nav>
+
+<!-- Floating Music FAB -->
+<div id="music-fab" style="display:block">
+  <button class="music-fab-btn" id="music-fab-btn" title="Toggle Music">🎵</button>
+</div>
+
+
+<!-- ============================================================
+     MAIN SITE (hidden until opening scene ends)
+     ============================================================ -->
+<div id="main-site">
+
+  <!-- ========================================================
+       SECTION 1 — WELCOME / HOME
+       ======================================================== -->
+  <section class="section" id="home">
+    <div class="heart-light"></div>
+    <div class="home-content">
+      <div class="home-label fade-in">Anniversary · Love · Forever</div>
+      <div class="gold-divider"></div>
+      <h1 class="home-heading fade-in" id="home-heading">
+        HAPPY FIRST<br><span>LOVE ANNIVERSARY</span> ❤️
+      </h1>
+      <p class="home-subheading fade-in" id="home-subheading">One year down, forever to go.</p>
+
+      <div class="gold-divider"></div>
+
+      <p class="home-message fade-in" id="home-message">
+        To the person who made my ordinary days extraordinary, thank you for making this year the most beautiful chapter of my life. Every moment with you is a treasure I will keep forever.
+      </p>
+
+      <!-- Anniversary Counter -->
+      <div class="counter-grid fade-in">
+        <div class="counter-item">
+          <div class="counter-number" id="cnt-years">00</div>
+          <div class="counter-label">Years</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number" id="cnt-months">00</div>
+          <div class="counter-label">Months</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number" id="cnt-days">00</div>
+          <div class="counter-label">Days</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number" id="cnt-hours">00</div>
+          <div class="counter-label">Hours</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number" id="cnt-minutes">00</div>
+          <div class="counter-label">Minutes</div>
+        </div>
+        <div class="counter-item">
+          <div class="counter-number" id="cnt-seconds">00</div>
+          <div class="counter-label">Seconds</div>
+        </div>
+      </div>
+
+      <a href="#photos" class="btn-gold fade-in">SEE OUR FAVORITE PHOTOS ❤️</a>
+    </div>
+  </section>
+
+  <!-- Favorite Photos -->
+  <section class="section" id="photos">
+    <div class="section-inner">
+      <h2 class="chapter-title fade-in">A Few Of My Favorite Photos Of Us</h2>
+      <div class="gold-divider"></div>
+      <p class="chapter-subtitle fade-in">Our little collection of beautiful moments</p>
+
+      <div class="favorite-photos-grid" id="favorite-photos-grid">
+        <div class="favorite-photo-card fade-in">
+          <img class="favorite-photo-preview" alt="Favorite moment">
+        </div>
+        <div class="favorite-photo-card fade-in">
+          <img class="favorite-photo-preview" alt="Favorite moment">
+        </div>
+        <div class="favorite-photo-card fade-in">
+          <img class="favorite-photo-preview" alt="Favorite moment">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       SECTION 4 — REASONS I LOVE YOU
+       ======================================================== -->
+  <section class="section" id="reasons">
+    <div class="section-inner">
+      <h2 class="chapter-title fade-in">1000 Reasons, But Here Are A Few...</h2>
+      <div class="gold-divider"></div>
+      <p class="chapter-subtitle fade-in">Chapter Three · Why I Love You</p>
+
+      <div class="reasons-grid" id="reasons-grid"><!-- Rendered by JS --></div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       SECTION 5 — MUSIC PLAYER
+       ======================================================== -->
+  <section class="section" id="music">
+    <div class="section-inner">
+      <h2 class="chapter-title fade-in">This Song Will Always Remind Me Of You.</h2>
+      <div class="gold-divider"></div>
+      <p class="chapter-subtitle fade-in">Chapter Four · Our Special Song</p>
+
+      <div class="music-player-container fade-in">
+
+        <!-- Album Disc -->
+        <div class="album-art-container">
+          <div class="album-disc" id="album-disc">
+            <div class="album-center">🎵</div>
+          </div>
+        </div>
+
+        <!-- Track Info -->
+        <div class="track-info">
+          <div class="track-title" id="track-title">Our special song</div>
+          <div class="track-artist" id="track-artist">Your special song</div>
+        </div>
+
+        <!-- Visualizer -->
+        <div id="visualizer"><!-- Bars built by JS --></div>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+          <div class="progress-track" id="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+            <div class="progress-thumb" id="progress-thumb"></div>
+          </div>
+          <div class="progress-time">
+            <span id="current-time">0:00</span>
+            <span id="duration-time">0:00</span>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="player-controls">
+          <button class="ctrl-btn" id="prev-btn" title="Previous">⏮</button>
+          <button class="ctrl-btn play-pause" id="play-pause-btn" title="Play / Pause">▶</button>
+          <button class="ctrl-btn" id="next-btn" title="Next">⏭</button>
+        </div>
+
+        <!-- Volume -->
+        <div class="volume-control">
+          <span class="volume-icon">🔈</span>
+          <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="80">
+          <span class="volume-icon">🔊</span>
+        </div>
+
+        <p style="font-size:0.75rem;color:var(--text-muted);margin-top:1rem;text-align:center;">
+          💕 Our special song, chosen just for you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       SECTION 6 — LOVE LETTER
+       ======================================================== -->
+  <section class="section" id="letter">
+    <div class="section-inner">
+      <h2 class="chapter-title fade-in">Something I Have Always Wanted To Tell You...</h2>
+      <div class="gold-divider"></div>
+      <p class="chapter-subtitle fade-in">Chapter Five · A Letter From My Heart</p>
+
+      <div class="envelope-container fade-in">
+
+        <!-- Envelope (shown first) -->
+        <div class="envelope" id="envelope">
+          <div class="envelope-body">
+            <div class="envelope-flap"></div>
+            <div class="envelope-seal">❤️</div>
+            <div style="text-align:center;padding-top:30px;">
+              <div class="envelope-label">A Letter For You</div>
+              <p style="font-size:0.8rem;color:var(--text-muted);margin-top:1rem;">Click to open 💌</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Letter Content (hidden until envelope opens) -->
+        <div id="letter-content" style="display:none">
+          <!-- Left margin line decoration -->
+          <div class="letter-text" id="letter-body"><!-- Filled by JS with typewriter effect --></div>
+          <div class="letter-signature" id="letter-signature">Forever Yours 💕</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       SECTION 7 — SURPRISE
+       ======================================================== -->
+  <section class="section" id="surprise">
+    <div class="section-inner">
+      <h2 class="chapter-title fade-in">One Last Surprise For You...</h2>
+      <div class="gold-divider"></div>
+      <p class="chapter-subtitle fade-in">Chapter Six · Just For You</p>
+
+      <div class="surprise-container fade-in">
+
+        <div class="love-scroll">
+          <button class="scroll-trigger" id="gift-box-trigger" type="button"
+                  aria-expanded="false" aria-controls="surprise-message-box">
+            <span class="scroll-rod" aria-hidden="true"></span>
+            <span class="scroll-trigger-label">Unroll your love note</span>
+          </button>
+
+          <div id="surprise-message-box" aria-live="polite">
+            <div class="surprise-msg"></div>
+            <button class="btn-gold" id="next-surprise-btn" style="margin:1rem auto;display:flex">
+              Read another note 💕
+            </button>
+          </div>
+
+          <div class="scroll-rod scroll-rod-bottom" aria-hidden="true"></div>
+        </div>
+
+        <div style="margin-top:3rem;">
+          <button class="btn-gold" id="love-amount-btn">
+            DO YOU KNOW HOW MUCH I LOVE YOU? ❤️
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Love Amount Full-Screen -->
+  <div id="love-fullscreen">
+    <span class="love-heart-big">❤️</span>
+    <div class="love-amount-text">MORE THAN WORDS CAN EVER EXPLAIN.</div>
+    <button class="love-close-btn" id="love-fs-close">Close ✕</button>
+  </div>
+
+
+  <!-- ========================================================
+       SECTION 8 — FOREVER TOGETHER (Final Scene)
+       ======================================================== -->
+  <section class="section" id="forever" style="min-height:100vh;">
+    <div class="forever-content fade-in">
+
+      <span class="forever-heart-anim">❤️</span>
+
+      <div class="forever-heading" id="forever-heading">365 DAYS OF US...</div>
+      <div class="forever-subheading" id="forever-subheading">AND THIS IS ONLY THE BEGINNING.</div>
+
+      <div class="gold-divider"></div>
+
+      <!-- Photo frame -->
+      <div>
+        <div class="forever-photo-frame" id="forever-photo-frame">
+          💑
+        </div>
+        <p style="font-size:0.75rem;color:var(--text-muted);text-align:center;margin-top:0.5rem;">
+          A favorite moment together
+        </p>
+      </div>
+
+      <div class="forever-message fade-in" id="forever-message">
+        "Forever Isn't Long Enough With You."
+      </div>
+
+      <div class="forever-signature" id="forever-signature">
+        HAPPY FIRST ANNIVERSARY, MY LOVE ❤️
+      </div>
+
+      <a class="btn-gold" href="#home">
+        ❤️ Back To The Beginning
+      </a>
+    </div>
+  </section>
+
+  <!-- ── Footer ──────────────────────────────────────────── -->
+  <footer style="text-align:center;padding:30px;color:var(--text-muted);font-size:0.8rem;border-top:1px solid var(--glass-border);">
+    <span style="font-family:var(--font-script);font-size:1.1rem;color:var(--gold);">Made with ❤️ especially for you</span>
+  </footer>
+
+</div><!-- /main-site -->
+
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script src="config.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/music.js"></script>
+<script src="js/sections.js"></script>
+
+<script>
+  // Apply config to static elements on load
+  document.addEventListener('DOMContentLoaded', () => {
+    const cfg = window.SITE_CONFIG;
+    if (!cfg) return;
+
+    // Update names in messages
+    const homeMsg = document.getElementById('home-message');
+    if (homeMsg) homeMsg.textContent = cfg.welcomeMessage;
+    const homeHeading = document.getElementById('home-heading');
+    if (homeHeading) {
+      const heading = cfg.welcomeHeading.replace(/<[^>]*>/g, '').replace('❤️', '').trim();
+      homeHeading.innerHTML = heading
+        .replace('LOVE ANNIVERSARY', '<span>LOVE ANNIVERSARY</span>')
+        .replace(/^HAPPY FIRST/, 'HAPPY FIRST<br>')
+        + ' <span>❤️</span>';
+    }
+    const homeSub = document.getElementById('home-subheading');
+    if (homeSub) homeSub.textContent = cfg.welcomeSubheading;
+
+    // Final scene
+    const fh = document.getElementById('forever-heading');
+    if (fh) fh.textContent = cfg.finalHeading;
+    const fs = document.getElementById('forever-subheading');
+    if (fs) fs.textContent = cfg.finalSubheading;
+    const fm = document.getElementById('forever-message');
+    if (fm) fm.textContent = '"' + cfg.finalMessage + '"';
+    const fsig = document.getElementById('forever-signature');
+    if (fsig) fsig.textContent = cfg.finalSignature;
+    const foreverPhoto = document.getElementById('forever-photo-frame');
+    if (foreverPhoto && cfg.foreverPhoto) {
+      const photo = document.createElement('img');
+      photo.src = cfg.foreverPhoto;
+      photo.alt = 'Our favorite picture together';
+      foreverPhoto.replaceChildren(photo);
+    }
+
+    // Opening messages
+    const msgs = cfg.openingMessages;
+    if (msgs) {
+      const m1 = document.getElementById('msg-1');
+      const m2 = document.getElementById('msg-2');
+      const m3 = document.getElementById('msg-3');
+      if (m1 && msgs[0]) m1.textContent = msgs[0];
+      if (m2 && msgs[1]) m2.textContent = msgs[1];
+      if (m3 && msgs[2]) m3.textContent = msgs[2];
+    }
+
+    if (window.Particles) { window.Particles.init(); window.Particles.start(); }
+    if (window.Petals) { window.Petals.init(); window.Petals.start(); }
+    if (window.Counter) window.Counter.start();
+    if (window.ScrollAnimations) window.ScrollAnimations.init();
+    if (typeof initAllSections === 'function') initAllSections();
+    if (window.MusicPlayer) {
+      window.MusicPlayer.init();
+    }
+
+    const configuredPhotos = cfg.favoritePhotos || [];
+    document.querySelectorAll('.favorite-photo-card').forEach((card, index) => {
+      const preview = card.querySelector('.favorite-photo-preview');
+      const photoSrc = configuredPhotos[index];
+      if (photoSrc) {
+        preview.src = photoSrc;
+        card.classList.add('has-photo');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
